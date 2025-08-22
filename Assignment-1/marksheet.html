@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet</title>
+</head>
+<body>
+    <script>
+        const english = 75
+        const urdu = 81
+        const math = 86
+        const physics = 72
+        const computer = 89
+
+        let totalMarks = english + urdu + math + physics + computer
+        let percentage = (totalMarks / 500) * 100
+
+        let grade = (percentage >= 80) ? "A+" :
+                    (percentage >= 70) ? "A" :
+                    (percentage >= 60) ? "B" :
+                    (percentage >= 50) ? "C" :
+                    (percentage >= 40) ? "E" :
+                    "Fail"
+
+        document.write(`
+            <h2>Mark Sheet</h2>
+            <p>English: ${english}</p>
+            <p>Urdu: ${urdu}</p>
+            <p>Math: ${math}</p>
+            <p>Physics: ${physics}</p>
+            <p>Computer: ${computer}</p>
+            <br />
+            <p>Total Marks: ${totalMarks} / 500</p>
+            <p>Percentage: ${percentage.toFixed(2)}%</p>
+            <p>Grade: ${grade}</p>
+        `)
+    </script>
+</body>
+</html>
