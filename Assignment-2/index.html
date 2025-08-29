@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile Brand & Model Filter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      select,
+      button {
+        margin: 10px;
+        padding: 5px;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Mobile Brand & Model Filtering App</h2>
+
+    <label for="brand">Select Brand:</label>
+    <select id="brand">
+      <option value="">--Choose Brand--</option>
+      <option value="Samsung">Samsung</option>
+      <option value="Apple">Apple</option>
+      <option value="Google">Google</option>
+      <option value="Vivo">Vivo</option>
+    </select>
+
+    <label for="model">Select Model:</label>
+    <select id="model">
+      <option value="">--Choose Model--</option>
+    </select>
+
+    <button id="searchBtn">Search</button>
+
+    <div id="result"></div>
+
+    <script>
+      const mobiles = {
+        Samsung: ["Galaxy S23", "Galaxy Note 20", "Galaxy S22", "Galaxy S23"],
+        Apple: ["iPhone 13", "iPhone 14", "iPhone 14 Pro", "iPhone 15 Pro"],
+        Google: ["pixel 6", "pixel 8", "pixel 9", "pixel 7xl"],
+        Vivo: ["Vivo V27", "Vivo Y21", "Vivo X90"],
+      };
+
+      const brandSelect = document.getElementById("brand");
+      const modelSelect = document.getElementById("model");
+      const resultDiv = document.getElementById("result");
+      const searchBtn = document.getElementById("searchBtn");
+
+      brandSelect.addEventListener("change", function () {
+        const brand = brandSelect.value;
+        if (brand && mobiles[brand]) {
+          modelSelect.innerHTML = `
+          <option value="">--Choose Model--</option>
+          ${mobiles[brand]
+            .map((model) => `<option value="${model}">${model}</option>`)
+            .join("")}
+        `;
+        } else {
+          modelSelect.innerHTML = '<option value="">--Choose Model--</option>';
+        }
+      });
+
+      searchBtn.addEventListener("click", function () {
+        const brand = brandSelect.value;
+        const model = modelSelect.value;
+
+        if (!brand || !model) {
+          resultDiv.textContent = "⚠️ Please select both brand and model!";
+        } else {
+          resultDiv.innerHTML = `<span style="color:gray;">You selected:</span> ${brand} - ${model}`;
+        }
+      });
+    </script>
+  </body>
+</html>
